@@ -1,12 +1,18 @@
 import React from "react";
 import Card from "../UI/Card/Card";
-import './UserList.css';
+import "./UserList.css";
 
 const UserList = (props) => {
   const renderedUsers = props.users.map((user) => {
-    return <Card name={user.age} age={user.name} />;
+    return <li key={user.name+user.age}>{user.name} {user.age}</li>;
   });
-  return <div className="userlist">{renderedUsers}</div>;
+  return (
+    <div className="userlist">
+      <Card>
+      <ul>{renderedUsers}</ul>
+      </Card>
+    </div>
+  );
 };
 
 export default UserList;
