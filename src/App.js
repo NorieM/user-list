@@ -4,14 +4,17 @@ import UserList from "./components/UserList/UserList";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
-  
-  const users = [
+
+  const [users, setUsers] = useState([
     { name: "Norie", age: 54 },
-    { name: "Bob", age: 33 },
-  ];
+    { name: "Bob", age: 33 }])
+  
+  const addNewUser = (user) => {
+    setUsers((prev) => [...users, user])
+  }  
   return (
     <div>
-      <AddUser />
+      <AddUser addUser={addNewUser}/>
       <UserList users={users} />
     </div>
   );
