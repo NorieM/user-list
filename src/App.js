@@ -4,7 +4,7 @@ import UserList from "./components/UserList/UserList";
 import ErrorModal from "./components/ErrorModal/ErrorModal";
 
 function App() {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const [users, setUsers] = useState([
     { name: "Norie", age: 54 },

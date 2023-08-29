@@ -1,14 +1,13 @@
 import React from "react";
-import "./Button.css";
+import classes from "./Button.module.css";
 
-const Button = ({ children, ...attributes }) => {
-  console.log({ attributes });
+const Button = (props) => {
   return (
-    <div className="button">
-      <button type="button" {...attributes}>
-        {children}{" "}
+
+      <button className={classes.button} type={props.type || 'button' } onClick={props.onClick}>
+        {props.children}
       </button>
-    </div>
+
   );
 };
 
