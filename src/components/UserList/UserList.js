@@ -4,7 +4,7 @@ import "./UserList.css";
 
 const UserList = (props) => {
   const renderedUsers = props.users.map((user) => {
-    return <li key={user.name+user.age}>{user.name} {user.age}</li>;
+    return <li key={user.name+user.age}>{user.name} ({user.age} years old)</li>;
   });
   return (
     <div className="userlist">

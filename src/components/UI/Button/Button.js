@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
+import "./Button.css";
 
-function Button(props) {
+const Button = ({ children, ...attributes }) => {
+  console.log({ attributes });
   return (
     <div className="button">
-        <button>{props.label}</button>
+      <button type="button" {...attributes}>
+        {children}{" "}
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
