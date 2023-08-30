@@ -4,16 +4,17 @@ import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 
 const AddUser = (props) => {
-  const [userInput, setUserInput] = useState({});
+  const [userInput, setUserInput] = useState({ name: "", age: "" });
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    if (!userInput.name || !userInput.age) {
+    if (!userInput.name || +userInput.age < 1) {
       props.showModal(true);
       return;
     }
     props.addUser(userInput);
+    setUserInput({ name: "", age: "" });
   };
 
   const handleChange = (input, value) => {
@@ -29,6 +30,7 @@ const AddUser = (props) => {
           name="name"
           id="name"
           onChange={(e) => handleChange(e.target.id, e.target.value)}
+          value={userInput.name}
         />
         <label htmlFor="age">Age (years)</label>
         <input
@@ -36,6 +38,7 @@ const AddUser = (props) => {
           name="age"
           id="age"
           onChange={(e) => handleChange(e.target.id, e.target.value)}
+          value={userInput.age}
         />
         <Button type="submit">Add User</Button>
       </form>
