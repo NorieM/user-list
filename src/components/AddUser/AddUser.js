@@ -2,18 +2,27 @@ import React, { useState } from "react";
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
+import ErrorModal from "../UI/ErrorModal/ErrorModal";
 
 const AddUser = (props) => {
-  const [userInput, setUserInput] = useState({ name: "", age: "" });
+  const initialUserInput  = { name: "", age: "" };
 
-  const handleFormSubmit = (event) => {
+  const [userInput, setUserInput] = useState(initialUserInput);
+  
+  const [error, setError] = useState();
+
+  const addUserHandler = (event) => {
     event.preventDefault();
 
     if (!userInput.name || +userInput.age < 1) {
-      props.showModal(true);
+      setUserInput(initialUserInput);
+      setError({
+        title: 'Invalid Input',
+        message: 'Please enter a valid name and age!'
+      })
       return;
     }
-    props.addUser(userInput);
+    props.onAddUser(userInput);
     setUserInput({ name: "", age: "" });
   };
 
@@ -21,9 +30,15 @@ const AddUser = (props) => {
     setUserInput((prev) => ({ ...prev, [input]: value }));
   };
 
+  const errorHandler = () => {
+    setError(null);
+  }
+
   return (
+    <div>
+    {error && <ErrorModal title={error.title} message={error.message}  onConfirm={errorHandler}/>}
     <Card className={classes.input}>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={addUserHandler}>
         <label htmlFor="name">Username</label>
         <input
           type="text"
@@ -43,6 +58,7 @@ const AddUser = (props) => {
         <Button type="submit">Add User</Button>
       </form>
     </Card>
+    </div>
   );
 };
 

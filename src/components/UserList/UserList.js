@@ -1,17 +1,16 @@
 import React from "react";
 import Card from "../UI/Card/Card";
-import "./UserList.css";
+import classes from  "./UserList.module.css";
 
 const UserList = (props) => {
   const renderedUsers = props.users.map((user) => {
     return <li key={user.name+user.age}>{user.name} ({user.age} years old)</li>;
   });
   return (
-    <div className="userlist">
-      <Card>
+
+      <Card className={classes.users}>
       <ul>{renderedUsers}</ul>
       </Card>
-    </div>
   );
 };
 

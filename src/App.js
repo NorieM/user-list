@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import AddUser from "./components/AddUser/AddUser";
 import UserList from "./components/UserList/UserList";
-import ErrorModal from "./components/ErrorModal/ErrorModal";
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
 
   const [users, setUsers] = useState([
     { name: "Norie", age: 54 },
@@ -14,14 +12,9 @@ function App() {
     setUsers((prev) => [...users, user])
   }  
 
-  const toggleModal =  (showHide) => {
-    setShowModal(showHide)
-  }
-
   return (
     <div>
-      {showModal && <ErrorModal showModal={toggleModal}/>}
-      <AddUser addUser={addNewUser} showModal={toggleModal}/>
+      <AddUser onAddUser={addNewUser}/>
       <UserList users={users} />
     </div>
   );
